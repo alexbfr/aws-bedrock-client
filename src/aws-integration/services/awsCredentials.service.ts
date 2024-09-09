@@ -6,6 +6,7 @@ export const awsCredentials: AwsCredentialIdentity = {
 };
 
 export const resourceSettings = {
+  region: import.meta.env.VITE_REGION || "eu-central-1",
   dynamoDbTableName: import.meta.env.VITE_DYNAMO_DB_TABLE_NAME,
   summarizeModelId:
     import.meta.env.VITE_SUMMARIZE_MODEL_ID ||

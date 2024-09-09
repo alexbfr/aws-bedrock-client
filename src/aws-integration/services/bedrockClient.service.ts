@@ -1,7 +1,7 @@
 import {BedrockClient} from "@aws-sdk/client-bedrock";
-import {awsCredentials} from "./awsCredentials.service.ts";
+import {awsCredentials, resourceSettings} from "./awsCredentials.service.ts";
 
-const client = new BedrockClient({credentials: awsCredentials, region: "eu-central-1"});
+const client = new BedrockClient({credentials: awsCredentials, region: resourceSettings.region});
 
 export function getBedrockClient() {
   return client;

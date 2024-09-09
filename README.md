@@ -1,50 +1,27 @@
-# React + TypeScript + Vite
+# Client for AWS bedrock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repo is a client app for using AWS bedrock as a LLM provider to chat with.
+Currently, it supports choosing a model (which has to be whitelisted by AWS first) and then
+chatting with the model in multiple chats.
 
-Currently, two official plugins are available:
+A chat headline is created automatically after the first interaction. A few relevant context
+menu entries exist.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![screenshot.png](images/screenshot.png)
 
-## Expanding the ESLint configuration
+# Configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. Create a dynamo db table
+   2. Primary key is a composite of `table-key` (string) and `created` (number)
+   3. Choose dynamic provisioning, otherwise it costs money even if not in use
+   4. 100 Read Units and 50 Write Units max works flawlessly in my experience
+   5. Cost for me is <2€ per month with quite heavy use
+6. On AWS bedrock, pick your region and apply for model access for models of interest
+   7. Claude 3/3.5 models are very good. Haiku is good, cheap and fast. Sonnet 3.5 is SOTA.
+8. Create an IAM policy and group which has access to the models and to the dynamo db table
+   (see template `iam_policy_template.yml` - not the cleanest form, but it will work)
+9. Create an IAM user who is assigned to a group which is has the policy created before
+10. Create an IAM access / secret key (or manage via SSO)
+11. Copy the file `.env.local-template` to `.env.local`.
+12. Replace the respective fields in `.env.local` with the credentials and resources created above
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
