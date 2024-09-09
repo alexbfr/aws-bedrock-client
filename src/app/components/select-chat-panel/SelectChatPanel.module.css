@@ -1,0 +1,13 @@
+.selectChatPanel {
+    background: #cdcdcd;
+    height: calc(100% - 16px);
+    max-width: 20em;
+    overflow: auto;
+    margin: 0;
+    padding: 8px;
+}
+
+.modelName {
+    display: flex;
+    align-items: center;
+}

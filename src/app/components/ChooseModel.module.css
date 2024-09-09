@@ -1,0 +1,19 @@
+.chooseModelContainer {
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.chooseModel {
+    margin: auto;
+}
+
+.modelSelector {
+    width: 30em;
+}
+
+.spacer {
+    flex-grow: 1;
+}

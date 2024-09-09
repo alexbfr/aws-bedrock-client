@@ -1,0 +1,29 @@
+.listItem {
+}
+
+.listItem:hover {
+    background: #ffffff;
+    text-decoration: underline;
+}
+
+.listItemSelected {
+    background: #cdfdcd;
+}
+
+.listItemSelected:hover {
+    background: #ffffff;
+    text-decoration: underline;
+}
+
+.selectableChat {
+    cursor: pointer;
+    font-size: smaller !important;
+}
+
+.chatTree {
+}
+
+.branchNameContainer {
+    display: flex;
+    align-items: stretch;
+}
