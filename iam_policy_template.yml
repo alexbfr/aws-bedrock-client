@@ -29,7 +29,7 @@
         "arn:aws:bedrock:eu-central-1::foundation-model/anthropic.claude-3-haiku-20240307-v1:0",
         "arn:aws:bedrock:eu-central-1::foundation-model/anthropic.claude-3-5-sonnet-20240620-v1:0",
         "arn:aws:bedrock:eu-central-1::foundation-model/amazon.titan-text-lite-v1",
-        "arn:aws:bedrock:*:149664468722:prompt/*:*"
+        "arn:aws:bedrock:*:__ACCOUNT_ID__:prompt/*:*"
       ]
     },
     {
